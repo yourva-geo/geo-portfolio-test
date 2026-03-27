@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angelo "Geo" Cezar | General Virtual Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #121212;
+    --bg2:     #191818;
+    --bg3:     #303335;
+    --border:  #303335;
+    --accent:  #F24545;
+    --accent2: #c93535;
+    --white:   #FFFFFF;
+    --muted:   #9a9a9a;
+    --heading: #FFFFFF;
+    --serif:   'Syne', sans-serif;
+    --sans:    'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--white); overflow-x: hidden; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+
+  /* NAV */
+  nav {
+    background: rgba(18,18,18,0.92);
+    backdrop-filter: blur(12px);
+    padding: 16px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  nav .logo { font-family: var(--serif); font-size: 1.1rem; color: var(--white); letter-spacing: 0.04em; }
+  nav .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 36px; }
+  nav ul a { text-decoration: none; font-size: 0.8rem; color: var(--muted); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  nav ul a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 80px 80px; min-height: 90vh; gap: 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,69,69,0.07) 0%, transparent 70%);
+    top: -80px; right: -80px; pointer-events: none;
+  }
+  .hero-left { flex: 1; max-width: 520px; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+  }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--accent); }
+  .hero h1 {
+    font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    line-height: 1.1; font-weight: 800; color: var(--heading);
+    margin-bottom: 20px; letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p { font-size: 0.98rem; color: var(--muted); line-height: 1.8; margin-bottom: 36px; max-width: 440px; }
+  .hero p strong { color: var(--white); }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-block; padding: 13px 30px; border-radius: 8px;
+    font-family: var(--sans); font-size: 0.84rem; font-weight: 600;
+    letter-spacing: 0.04em; text-decoration: none; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-primary { background: var(--accent); color: var(--white); border: 2px solid var(--accent); }
+  .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(242,69,69,0.25); }
+  .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--bg3); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-right { flex: 0 0 360px; display: flex; justify-content: center; position: relative; z-index: 1; }
+  .hero-img-wrap {
+    width: 320px; height: 360px; border-radius: 20px; overflow: hidden;
+    background: var(--bg2); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .hero-img-wrap::before {
+    content: ''; position: absolute; inset: 0; border-radius: 20px;
+    background: linear-gradient(135deg, rgba(242,69,69,0.08) 0%, transparent 60%);
+  }
+  .hero-img-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--muted); font-size: 0.8rem; text-align: center; padding: 20px; }
+  .hero-img-placeholder .icon { font-size: 4rem; opacity: 0.25; }
+  .hero-badge {
+    position: absolute; bottom: -16px; left: -16px;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 12px 16px;
+    display: flex; align-items: center; gap: 10px; min-width: 150px;
+  }
+  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+  .hero-badge-text { font-size: 0.74rem; }
+  .hero-badge-text strong { display: block; color: var(--white); font-size: 0.8rem; }
+  .hero-badge-text span { color: var(--muted); }
+
+  /* STATS */
+  .stats {
+    background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 32px 80px; display: flex; justify-content: space-around; gap: 24px; flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .num { font-family: var(--serif); font-size: 2rem; font-weight: 800; color: var(--accent); display: block; line-height: 1; margin-bottom: 6px; }
+  .stat-item .label { font-size: 0.76rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* SECTION TAG */
+  .section-tag {
+    display: inline-block; background: rgba(242,69,69,0.1); color: var(--accent);
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 50px; border: 1px solid rgba(242,69,69,0.2); margin-bottom: 20px;
+  }
+
+  /* PAIN */
+  .pain { background: var(--bg); text-align: center; padding: 80px 48px; }
+  .pain h2 { font-family: var(--serif); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; max-width: 680px; margin: 0 auto 24px; line-height: 1.2; color: var(--heading); }
+  .pain p { max-width: 580px; margin: 0 auto 18px; color: var(--muted); font-size: 0.98rem; line-height: 1.8; }
+  .pain .tagline { font-weight: 700; font-size: 1.05rem; color: var(--white); margin: 20px 0 14px; display: block; }
+
+  /* ABOUT */
+  .about {
+    background: var(--bg2); padding: 80px 80px;
+    display: flex; align-items: flex-start; gap: 60px;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .about-img {
+    flex: 0 0 260px; width: 260px; height: 300px; border-radius: 16px;
+    background: var(--bg3); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 5rem; position: relative;
+  }
+  .about-img::after {
+    content: ''; position: absolute; inset: 0; border-radius: 16px;
+    background: linear-gradient(135deg, rgba(242,69,69,0.07) 0%, transparent 70%);
+  }
+  .about-content { flex: 1; }
+  .about-content h2 { font-family: var(--serif); font-size: 2.2rem; font-weight: 800; color: var(--heading); margin-bottom: 8px; letter-spacing: -0.02em; }
+  .about-content .subtitle { font-size: 0.88rem; color: var(--accent); margin-bottom: 20px; display: block; font-weight: 500; }
+  .about-content p { color: var(--muted); line-height: 1.85; margin-bottom: 14px; font-size: 0.93rem; }
+  .about-content strong { color: var(--white); }
+  .about-skills-row { display: flex; gap: 36px; margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .about-skills-row div { flex: 1; }
+  .about-skills-row h4 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; color: var(--accent); }
+  .about-skills-row p { font-size: 0.86rem; color: var(--muted); line-height: 1.7; }
+
+  /* SERVICES */
+  .services { padding: 80px 60px; background: var(--bg); text-align: center; }
+  .services h2 { font-family: var(--serif); font-size: 2.2rem; font-weight: 800; color: var(--heading); margin-bottom: 10px; letter-spacing: -0.02em; }
+  .services .sub { color: var(--muted); font-size: 0.93rem; max-width: 500px; margin: 0 auto 48px; line-height: 1.75; }
+  .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1020px; margin: 0 auto; }
+  .service-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 28px 24px; text-align: left;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .service-card:hover { transform: translateY(-4px); border-color: rgba(242,69,69,0.3); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+  .service-card h3 { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; color: var(--heading); margin-bottom: 10px; }
+  .service-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+  .divider-line { width: 28px; height: 2px; background: var(--accent); margin: 10px 0; opacity: 0.5; }
+  .services .btn-wrap { margin-top: 44px; }
+
+  /* EXPERIENCE */
+  .experience {
+    background: var(--bg2); padding: 80px 80px; text-align: center;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .experience h2 { font-family: var(--serif); font-size: 2.2rem; font-weight: 800; color: var(--heading); margin-bottom: 44px; letter-spacing: -0.02em; }
+  .exp-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; text-align: left; }
+  .exp-item {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px 28px; transition: border-color 0.2s;
+  }
+  .exp-item:hover { border-color: rgba(242,69,69,0.25); }
+  .exp-item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+  .exp-item h3 { font-weight: 600; font-size: 0.92rem; color: var(--white); }
+  .exp-item .date {
+    font-size: 0.73rem; color: var(--accent); font-weight: 500;
+    background: rgba(242,69,69,0.08); border: 1px solid rgba(242,69,69,0.15);
+    padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+  }
+  .exp-item p { font-size: 0.86rem; color: var(--muted); line-height: 1.75; }
+
+  /* TOOLS */
+  .tools { background: var(--bg); padding: 72px 48px; text-align: center; }
+  .tools h2 { font-family: var(--serif); font-size: 2rem; font-weight: 800; color: var(--heading); margin-bottom: 36px; letter-spacing: -0.02em; }
+  .tools-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 800px; margin: 0 auto; }
+  .tool-tag { background: var(--bg2); border: 1px solid var(--border); padding: 7px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; color: var(--muted); transition: all 0.2s; text-decoration: none; cursor: pointer; }
+  .tool-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--bg2); padding: 80px 60px; text-align: center; border-top: 1px solid var(--border); }
+  .testimonials h2 { font-family: var(--serif); font-size: 2.2rem; font-weight: 800; color: var(--heading); margin-bottom: 44px; letter-spacing: -0.02em; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; max-width: 960px; margin: 0 auto 44px; }
+  .testi-card {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px; text-align: left; font-size: 0.86rem; color: var(--muted); line-height: 1.7;
+    position: relative; transition: border-color 0.2s;
+  }
+  .testi-card:hover { border-color: rgba(242,69,69,0.2); }
+  .testi-card::before { content: '"'; font-family: var(--serif); font-size: 3.5rem; color: var(--accent); opacity: 0.12; position: absolute; top: 8px; right: 18px; line-height: 1; }
+  .testi-name { font-weight: 600; color: var(--accent); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 14px; display: block; }
+
+  /* CTA */
+  .cta { background: var(--bg); padding: 100px 48px; text-align: center; position: relative; overflow: hidden; }
+  .cta::before {
+    content: ''; position: absolute; width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,69,69,0.05) 0%, transparent 65%);
+    top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
+  }
+  .cta h2 { font-family: var(--serif); font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 800; max-width: 600px; margin: 0 auto 18px; line-height: 1.15; color: var(--heading); letter-spacing: -0.02em; position: relative; }
+  .cta p { color: var(--muted); font-size: 0.97rem; max-width: 440px; margin: 0 auto 40px; line-height: 1.75; position: relative; }
+  .contact-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 32px; position: relative; }
+  .contact-pill { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 20px; font-size: 0.8rem; font-weight: 500; color: var(--muted); display: flex; align-items: center; gap: 8px; text-decoration: none; transition: all 0.2s; }
+  .contact-pill:hover { border-color: var(--accent); color: var(--white); }
+
+  footer { background: var(--bg2); border-top: 1px solid var(--border); color: var(--muted); text-align: center; padding: 22px; font-size: 0.76rem; letter-spacing: 0.02em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-left > * { animation: fadeUp 0.55s ease both; }
+  .hero-eyebrow { animation-delay: 0.05s; }
+  .hero h1 { animation-delay: 0.15s; }
+  .hero p { animation-delay: 0.25s; }
+  .hero-btns { animation-delay: 0.35s; }
+  .hero-right { animation: fadeUp 0.65s 0.2s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    nav { padding: 14px 24px; }
+    nav ul { gap: 18px; }
+    .hero { flex-direction: column; padding: 60px 28px; text-align: center; min-height: auto; }
+    .hero p { margin: 0 auto 32px; }
+    .hero-btns { justify-content: center; }
+    .hero-right { order: -1; }
+    .stats { padding: 28px 24px; }
+    .about { flex-direction: column; padding: 60px 28px; align-items: center; text-align: center; }
+    .about-skills-row { flex-direction: column; gap: 20px; }
+    .services { padding: 60px 24px; }
+    .services-grid { grid-template-columns: 1fr; max-width: 460px; }
+    .experience { padding: 60px 32px; }
+    .testi-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+    .testimonials { padding: 60px 24px; }
+    .cta { padding: 72px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">Geo<span>.</span>Cezar</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-eyebrow">Available for Hire</span>
+    <h1>Your Reliable <span>Virtual Assistant</span> & Social Media Manager</h1>
+    <p>I help business owners take back their time. I know what's holding you back from growing — <strong>"TIME!"</strong> Let me handle the operations so you can focus on what truly matters.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">Work With Me</a>
+      <a href="#services" class="btn btn-outline">View Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+  <img src="photo1.jpg" alt="Geo Profile" />
+</div>
+    <div class="hero-badge">
+      <div class="dot"></div>
+      <div class="hero-badge-text">
+        <strong>Open to Work</strong>
+        <span>Koronadal, PH</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-item"><span class="num">3+</span><span class="label">Clients Served</span></div>
+  <div class="stat-item"><span class="num">2+</span><span class="label">Year Experience</span></div>
+  <div class="stat-item"><span class="num">6+</span><span class="label">Platforms Managed</span></div>
+  <div class="stat-item"><span class="num">20+</span><span class="label">Tools Mastered</span></div>
+</div>
+
+<section class="pain">
+  <span class="section-tag">The Problem</span>
+  <h2>Spending too much time on tasks that don't grow your business?</h2>
+  <p>Your ideas deserve to be out in the world — not buried under admin work and scheduling.</p>
+  <span class="tagline">I get it.</span>
+  <p>Running a business alone is no joke. Whether it's social media, emails, or content calendars — these things pile up fast. I'm here so you don't have to do it all alone.</p>
+</section>
+
+<section class="about" id="about">
+  <div class="about-img"><img src="photo2.jpg" alt="Geo Profile" /></div>
+  <div class="about-content">
+    <span class="section-tag">About Me</span>
+    <h2>Angelo "Geo" Cezar</h2>
+    <span class="subtitle">Freelance General Virtual Assistant & Social Media Manager · Philippines</span>
+    <p>With experience managing social media accounts, content pipelines, and administrative operations, I help clients stay consistent online and run more efficiently. I've worked with podcasters, e-commerce brands, and content creators.</p>
+    <p>Clients know me for my <strong>attention to detail, reliability, and drive to improve</strong>. I'm finishing a BS in Information Technology at STI College Koronadal — and I bring that technical mindset into everything I do.</p>
+    <p><strong>Try me and I will surely not disappoint YOU.</strong></p>
+    <div class="about-skills-row">
+      <div>
+        <h4>My Expertise</h4>
+        <p>Social Media Management, Podcast Management, Graphic Design, Content Creation, Admin Support, Research, Video Editing</p>
+      </div>
+      <div>
+        <h4>My Approach</h4>
+        <p>Always learning, always improving. I constantly push beyond my comfort zone to take on new tools and deliver better results with every project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <span class="section-tag">What I Do</span>
+  <h2>My Services</h2>
+  <p class="sub">From content scheduling to full podcast management — here's how I can help your business run smoother.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🎙️</span>
+      <h3>Podcast Management</h3>
+      <div class="divider-line"></div>
+      <p>Scheduling episodes on Megaphone, Simplecast & YouTube, guest research, show notes, and database management — I handle it all so you can focus on recording great content.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">📱</span>
+      <h3>Social Media Management</h3>
+      <div class="divider-line"></div>
+      <p>Managing your presence across Facebook, LinkedIn, TikTok, YouTube, Pinterest, and X. I create, schedule, and post content that builds your brand consistently.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎨</span>
+      <h3>Graphic Design</h3>
+      <div class="divider-line"></div>
+      <p>Clean, on-brand visuals using Canva — from social media graphics and Pinterest pins to marketing materials that match your identity.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✂️</span>
+      <h3>Video Editing</h3>
+      <div class="divider-line"></div>
+      <p>Short-form video editing with CapCut for reels and clips. I help you repurpose content into scroll-stopping short videos for social media.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">📋</span>
+      <h3>Administrative Support</h3>
+      <div class="divider-line"></div>
+      <p>Document organization, email management, data entry, research, and database maintenance — I keep your backend running so nothing falls through the cracks.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">📊</span>
+      <h3>Digital Marketing</h3>
+      <div class="divider-line"></div>
+      <p>Effective strategies to grow your online presence and reach your target audience — content marketing and more, all tailored to increase your visibility.</p>
+    </div>
+  </div>
+  <div class="btn-wrap">
+    <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <span class="section-tag">Work History</span>
+  <h2>Experience</h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-item-header">
+        <h3>Freelance General Virtual Assistant — Podcaster (Las Vegas, US)</h3>
+        <span class="date">Mar 2025 – Aug 2025</span>
+      </div>
+      <p>Managed all aspects of podcast content for a US-based client — scheduling episodes on Megaphone, Simplecast, YouTube, and the client's website. Created and sent email campaigns, conducted guest research, maintained databases, updated Instagram, and handled product research and listing.</p>
+    </div>
+    <div class="exp-item">
+      <div class="exp-item-header">
+        <h3>Freelance General Virtual Assistant</h3>
+        <span class="date">Oct 2024 – Present</span>
+      </div>
+      <p>Schedules and posts content on Facebook, LinkedIn, TikTok, YouTube, and X using Radaar. Handles content research, Pinterest graphic creation, short video editing with CapCut, and administrative tasks including document and email organization.</p>
+    </div>
+    <div class="exp-item">
+      <div class="exp-item-header">
+        <h3>Freelance Social Media Manager</h3>
+        <span class="date">Oct 2024 – Mar 2025</span>
+      </div>
+      <p>Managed client's Facebook page, Pinterest, and website. Maintained consistent posting schedules using Strevio, engaged with followers, responded to comments, and maintained an active and professional online presence.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tools">
+  <span class="section-tag">Tech Stack</span>
+  <h2>Tools & Platforms</h2>
+  <div class="tools-grid">
+    <a class="tool-tag" href="https://radaar.io" target="_blank">Radaar</a>
+    <a class="tool-tag" href="https://www.strevio.com" target="_blank">Strevio</a>
+    <a class="tool-tag" href="https://feedhive.com" target="_blank">Feedhive</a>
+    <a class="tool-tag" href="https://asana.com" target="_blank">Asana</a>
+    <a class="tool-tag" href="https://niftypm.com" target="_blank">Nifty</a>
+    <a class="tool-tag" href="https://edworking.com" target="_blank">Edworking</a>
+    <a class="tool-tag" href="https://canva.com" target="_blank">Canva</a>
+    <a class="tool-tag" href="https://www.capcut.com" target="_blank">CapCut</a>
+    <a class="tool-tag" href="https://megaphone.fm" target="_blank">Megaphone</a>
+    <a class="tool-tag" href="https://simplecast.com" target="_blank">Simplecast</a>
+    <a class="tool-tag" href="https://www.microsoft.com/en-us/microsoft-365/word" target="_blank">MS Word</a>
+    <a class="tool-tag" href="https://docs.google.com" target="_blank">Google Docs</a>
+    <a class="tool-tag" href="https://sheets.google.com" target="_blank">Google Sheets</a>
+    <a class="tool-tag" href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank">Excel</a>
+    <a class="tool-tag" href="https://notion.so" target="_blank">Notion</a>
+    <a class="tool-tag" href="https://studio.youtube.com" target="_blank">YouTube Studio</a>
+    <a class="tool-tag" href="https://www.facebook.com/pages" target="_blank">Facebook Pages</a>
+    <a class="tool-tag" href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <a class="tool-tag" href="https://tiktok.com" target="_blank">TikTok</a>
+    <a class="tool-tag" href="https://pinterest.com" target="_blank">Pinterest</a>
+  </div>
+</section>
+
+<section class="testimonials">
+  <span class="section-tag">Social Proof</span>
+  <h2>What Clients Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p>Geo is incredibly reliable and always delivers on time. He keeps everything organized — I never have to worry about missed posts or deadlines.</p>
+      <span class="testi-name">— Podcast Client, Las Vegas</span>
+    </div>
+    <div class="testi-card">
+      <p>Since working with Geo, my social media presence has been so much more consistent. He gets my brand voice and creates content that resonates.</p>
+      <span class="testi-name">— Social Media Client</span>
+    </div>
+    <div class="testi-card">
+      <p>He's proactive, detail-oriented, and always looking for ways to improve. Best VA I've worked with.</p>
+      <span class="testi-name">— Business Owner</span>
+    </div>
+  </div>
+  <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+</section>
+
+<section class="cta" id="contact">
+  <span class="section-tag">Get In Touch</span>
+  <h2>Ready to Take Your Business to the Next Level?</h2>
+  <p>With me by your side, you focus on your zone of genius. Let's start turning your ideas into results.</p>
+  <a href="/cdn-cgi/l/email-protection#51283e242327307f36343e11363c30383d7f323e3c" class="btn btn-primary">Work With Me Now</a>
+  <div class="contact-row">
+    <a href="/cdn-cgi/l/email-protection#e1988e94939780cf86848ea1868c80888dcf828e8c" class="contact-pill">✉️ <span class="__cf_email__" data-cfemail="e891879d9a9e89c68f8d87a88f85898184c68b8785">[email&#160;protected]</span></a>
+    <a href="tel:09998380288" class="contact-pill">📞 09998380288</a>
+    <span class="contact-pill">📍 Philipp
